@@ -1,0 +1,8 @@
+newspaper3k
+beautifulsoup4
+lxml
+langdetect
+streamlit
+python-dotenv
+requests
+pyttsx3
