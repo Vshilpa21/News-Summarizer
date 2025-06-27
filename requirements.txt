@@ -1,9 +1,9 @@
 newspaper3k
 beautifulsoup4
 lxml
-lxml_html_clean
+lxml-html-clean
 langdetect
 streamlit
 python-dotenv
 requests
-pyttsx3
+gtts
