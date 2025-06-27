@@ -1,3 +1,4 @@
+# ✅ app.py — Sutra News Summarizer (Hindi & English)
 import streamlit as st
 from news_scraper import fetch_article_text
 from summarizer import summarize_with_sutra, detect_language, translate_text
@@ -33,18 +34,16 @@ if st.button("Summarize"):
         if translate_option != "None" and translate_option != lang:
             summary = translate_text(summary, target_lang=translate_option)
             st.write(f"🔁 Translated Summary ({translate_option}):")
-            audio_lang = 'hi' if translate_option == "Hindi" else 'en'
-        else:
-            audio_lang = 'hi' if lang == "Hindi" else 'en'
 
         st.subheader("Summary")
         st.success(summary)
 
-        # ✅ Text-to-Speech with gTTS
+        # ✅ Text-to-Speech using gTTS (cross-platform)
         try:
+            tts_lang = "hi" if lang.lower() == "hindi" else "en"
+            tts = gTTS(text=summary, lang=tts_lang)
             with tempfile.NamedTemporaryFile(delete=False, suffix=".mp3") as tf:
-                tts = gTTS(text=summary, lang=audio_lang)
                 tts.save(tf.name)
-                st.audio(tf.name, format='audio/mp3')
+                st.audio(tf.name, format="audio/mp3")
         except Exception as e:
-            st.warning(f"Text-to-Speech failed: {e}")
+            st.warning(f"🎙️ Audio generation failed: {e}")
